@@ -1,0 +1,21 @@
+/* Navigation bar styling, override bootstrap.min.css where necessary */
+
+.navbar {
+    padding: 5px;
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.navbar-brand-text {
+    vertical-align: bottom;
+}
+
+/* Media queries */
+
+@media (min-width:768px) {
+    .navbar {
+        padding: 16px;
+    }
+}
