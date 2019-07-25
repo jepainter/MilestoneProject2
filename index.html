@@ -9,10 +9,10 @@
     <!-- Stylesheets - Bootswatch Materia theme for styling HTML, Style specific styling for overrides -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    
+
     <!-- Scripts - Font Awesome -->
     <script src="https://kit.fontawesome.com/009cda214e.js"></script>
-    
+
     <title>City Safari</title>
 </head>
 
@@ -47,29 +47,54 @@
             </ul>
         </div>
     </nav>
+    
+    <!-- Greating section -->
+    <section class="container-fluid">
+        
+    </section>
+    
+    <!-- Section for selection of city -->
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-lg" for="inputLarge">City information required</label>
+                    <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="inputLarge">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Section for display of map -->
     <section class="container-fluid">
-
+        <div class="row">
+            <div class="col-12" id="map">
+                <p>Map Area</p>
+            </div>
+        </div>
     </section>
 
     <!-- Section for display of data from API -->
     <section class="container-fluid">
-
+        <div class="row">
+            <div class="col-12" id="tables">
+                <p>Table Area</p>
+            </div>
+        </div>
     </section>
 
     <!-- Footer section for disclaimer, API powered by, and social media links -->
     <footer class="container-fluid">
         <div class="row">
             <div class="col-12 footer-column bg-clr-red">
-                <p class="text-center"><em>This site is powered by Google Maps API.</em></p>
+                <h5 class="text-center"><em>This site is powered by Google Maps API.</em></h5>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 footer-column bg-clr-orange">
                 <h4>Disclaimer</h4>
                 <p>This site has been developed by Jonathan Painter and is solely for educational purposes.</p>
-                <p>You can view the ReadMe file here: 
+                <p>You can view the ReadMe file here:
                     <a target="_blank" aria-label="Link to ReadMe" rel="noopener" href="#">
                         <i class="fas fa-download footer-icon" aria-hidden="true"></i>
                         <span class="sr-only">ReadMe</span>
@@ -78,7 +103,7 @@
             </div>
             <div class="col-md-6 footer-column bg-clr-orange">
                 <h4>Social Media</h4>
-                <p>  Please follow us on social media, or sign up to our newsletter:</p>
+                <p> Please follow us on social media, or sign up to our newsletter:</p>
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
                         <a target="_blank" aria-label="Link to Facebook" rel="noopener" href="https://www.facebook.com">
@@ -102,7 +127,7 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- Scripts for function of navagation bar and toggler-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
