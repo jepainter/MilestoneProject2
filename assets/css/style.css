@@ -2,6 +2,7 @@
 
 .bg-clr-red {
     background-color: #e51c23;
+    color:#fafafa;
 }
 
 .bg-clr-orange {
@@ -21,6 +22,16 @@
 .navbar-brand-text {
     vertical-align: middle;
 }
+
+.nav-item {
+    font-size: 16px;
+}
+
+/* Map area */
+#map {
+    height: 60vh !important;
+}
+/* Table area */
 
 /* Footer styling */
 
