@@ -1,3 +1,13 @@
+/* Color scheme */
+
+.bg-clr-red {
+    background-color: #e51c23;
+}
+
+.bg-clr-orange {
+    background-color:#ffd400;
+}
+
 /* Navigation bar styling, override bootstrap.min.css where necessary */
 
 .navbar {
@@ -9,7 +19,18 @@
 }
 
 .navbar-brand-text {
-    vertical-align: bottom;
+    vertical-align: middle;
+}
+
+/* Footer formatting */
+
+.footer-column {
+    padding-top: 15px;
+}
+
+.footer-icon {
+    font-size: 24px;
+    padding: 0px 15px 0px 15px;
 }
 
 /* Media queries */
