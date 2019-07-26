@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Stylesheets - Bootswatch Materia theme for styling HTML, Style specific styling for overrides -->
+    <!-- Stylesheets - Bootswatch Materia theme for styling HTML, style.css specific styling for overrides -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
@@ -17,6 +17,7 @@
 </head>
 
 <body>
+
     <!-- Navigation bar for site -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand" href="index.html">
@@ -33,32 +34,37 @@
                     <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Map</a>
+                    <a class="nav-link" href="#map">Map</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Attractions</a>
+                    <a class="nav-link" href="#attractions">Attractions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Bars and Restaurants</a>
+                    <a class="nav-link" href="#bars-restaurants">Bars and Restaurants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accommodation</a>
+                    <a class="nav-link" href="#accommodation">Accommodation</a>
                 </li>
             </ul>
         </div>
     </nav>
-    
+
     <!-- Greating section -->
-    <section class="container-fluid">
-        
+    <section class="container-fluid column-padding">
+        <div class="row justify-content-around">
+            <div class="col-12 col-md-8">
+                <h2 class="text-center">Welcome to City Safari</h2>
+                <h5 class="text-center"><em>Just input the city you want to visit, and we will get all the attractions, bars and restaurants and accommodation available for you!!!</em></h5>
+            </div>
+        </div>
     </section>
-    
+
     <!-- Section for selection of city -->
-    <section class="container-fluid">
-        <div class="row">
-            <div class="col-12">
+    <section class="container-fluid column-padding">
+        <div class="row justify-content-around">
+            <div class="col-12 col-md-8">
                 <div class="form-group">
-                    <label class="col-form-label col-form-label-lg" for="inputLarge">City information required</label>
+                    <label class="col-form-label col-form-label-lg" for="inputLarge">Which city do you want information on?</label>
                     <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="inputLarge">
                 </div>
             </div>
@@ -66,7 +72,7 @@
     </section>
 
     <!-- Section for display of map -->
-    <section class="container-fluid">
+    <section class="container-fluid column-padding bg-clr-orange" aref="map">
         <div class="row">
             <div class="col-12" id="map">
                 <p>Map Area</p>
@@ -75,10 +81,34 @@
     </section>
 
     <!-- Section for display of data from API -->
-    <section class="container-fluid">
+    <section class="container-fluid column-padding">
         <div class="row">
             <div class="col-12" id="tables">
-                <p>Table Area</p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#attractions">Attractions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bars-restaurants">Bars & Restaurants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#accommodation">Accommodation</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade show active" id="attractions">
+                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                            synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                    </div>
+                    <div class="tab-pane fade" id="bars-restaurants">
+                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+                            booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    </div>
+                    <div class="tab-pane fade" id="accommodation">
+                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles
+                            etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -86,12 +116,12 @@
     <!-- Footer section for disclaimer, API powered by, and social media links -->
     <footer class="container-fluid">
         <div class="row">
-            <div class="col-12 footer-column bg-clr-red">
+            <div class="col-12 column-padding bg-clr-red">
                 <h5 class="text-center"><em>This site is powered by Google Maps API.</em></h5>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 footer-column bg-clr-orange">
+            <div class="col-md-6 column-padding bg-clr-orange">
                 <h4>Disclaimer</h4>
                 <p>This site has been developed by Jonathan Painter and is solely for educational purposes.</p>
                 <p>You can view the ReadMe file here:
@@ -101,7 +131,7 @@
                     </a>
                 </p>
             </div>
-            <div class="col-md-6 footer-column bg-clr-orange">
+            <div class="col-md-6 column-padding bg-clr-orange">
                 <h4>Social Media</h4>
                 <p> Please follow us on social media, or sign up to our newsletter:</p>
                 <ul class="list-inline text-center">
