@@ -83,9 +83,18 @@ function createMapMarker(attraction) {
 
 // Populate table function to display search results
 function populateTable(data){
+    var category = document.getElementById("attractions");
+    category.innerHTML = ``;
+    
+    var attractionHeaders = ["Name","Type","Address","Rating","Website"];
+    var barsRestaurantHeaders = ["Name","Type","Address","Rating","Phone"];
+    var accommodationHeaders = ["Name","Rating","Phone","Website"];
+    
     for (var i=0;i<data.length;i++){
-        document.getElementById("attractions").innerHTML = `Data: ${data[i].name}`;
+        category.innerHTML += `<p> ${data[i].name} </p>`;
     }    
         console.dir(data);
+        
+    category.innerHTML = attractionHeaders;
 
 }
