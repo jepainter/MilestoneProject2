@@ -86,15 +86,23 @@ function populateTable(data){
     var category = document.getElementById("attractions");
     category.innerHTML = ``;
     
-    var attractionHeaders = ["Name","Type","Address","Rating","Website"];
-    var barsRestaurantHeaders = ["Name","Type","Address","Rating","Phone"];
-    var accommodationHeaders = ["Name","Rating","Phone","Website"];
+    // Table headers
+    var attractionHeaders = [`<td>Name</td>`,`<td>Type</td>`,`<td>Address</td>`,`<td>Rating</td>`,`<td>Website</td>`];
+    var barsRestaurantHeaders = [`<td>Name</td>`,`<td>Type</td>`,`<td>Address</td>`,`<td>Rating</td>`,`<td>Phone</td>`];
+    var accommodationHeaders = [`<td>Name</td>`,`<td>Rating</td>`,`<td>Phone</td>`,`<td>Website</td>`];
     
-    for (var i=0;i<data.length;i++){
-        category.innerHTML += `<p> ${data[i].name} </p>`;
-    }    
-        console.dir(data);
+    var dataRow = [];
+    var tableRow = [];
+        for (var i=0;i<data.length;i++){
+            dataRow.push(`<td>${data[i].name}</td>`);
+            dataRow.push(`<td>${data[i].types[0]}</td>`);
+            dataRow.push(`<td>${data[i].vicinity}</td>`);
+            dataRow.push(`<td>${data[i].rating}</td>`);
+            dataRow.push(`<td>url</td>`);
+            tableRow.push(`<tr>${dataRow}</tr>`);
+            dataRow = [];
+        }
+       console.dir(data);
         
-    category.innerHTML = attractionHeaders;
-
+    category.innerHTML += `<table>${attractionHeaders}${tableRow}</table>`;
 }
