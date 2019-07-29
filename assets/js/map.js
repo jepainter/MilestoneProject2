@@ -27,7 +27,7 @@ function citySelected() {
     //Try catch to be inserted for error handling
     if (city.geometry) {
         map.panTo(city.geometry.location);
-        map.setZoom(10);
+        map.setZoom(12);
         getAttractions(city);
     }
     else {
@@ -35,15 +35,42 @@ function citySelected() {
     }
 }
 
-// Function to get attractions within a specified city -- adapted from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
+// Function to get attractions within a specified city -- adapted from https://developers.google.com/maps/documentation/javascript/examples/place-search
 function getAttractions(detail) {
     console.log(`City: ${detail.geometry.location}`);
 
-    var attractions = {
+    var attractionAreaType = {
         bounds: map.getBounds(),
-        types: ['amusement_park', 'aquarium', 'art_gallery', 'museum', 'casino', 'zoo']
+        types: ['art_gallery']
     };
 
-    console.log(`Bounds: ${attractions.bounds}`);
+    console.log(`Bounds: ${attractionAreaType.bounds}`);
 
+    var attractions = new google.maps.places.PlacesService(map);
+
+    attractions.nearbySearch(attractionAreaType, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMapMarker(results[i]);
+            }
+
+            map.setCenter(results[0].geometry.location);
+        }
+    });
+}
+
+function createMapMarker(attraction) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: attraction.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        var info = new google.maps.InfoWindow();
+        
+        console.log(`Place: ${attraction.name}`);
+        
+        info.setContent(attraction.name);
+        info.open(map, this);
+    });
 }
