@@ -24,11 +24,26 @@ function searchCity() {
 function citySelected() {
     var city = autocomplete.getPlace();
     console.log(`the city is ${city.geometry.location}`);
-
+    //Try catch to be inserted for error handling
     if (city.geometry) {
         map.panTo(city.geometry.location);
         map.setZoom(10);
-    } else {
+        getAttractions(city);
+    }
+    else {
         document.getElementById("city").placeholder = 'Enter a city';
     }
+}
+
+// Function to get attractions within a specified city -- adapted from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
+function getAttractions(detail) {
+    console.log(`City: ${detail.geometry.location}`);
+
+    var attractions = {
+        bounds: map.getBounds(),
+        types: ['amusement_park', 'aquarium', 'art_gallery', 'museum', 'casino', 'zoo']
+    };
+
+    console.log(`Bounds: ${attractions.bounds}`);
+
 }
