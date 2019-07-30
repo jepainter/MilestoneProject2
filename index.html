@@ -12,8 +12,14 @@
 
     <!-- Scripts - Font Awesome, map to manage map -->
     <script src="https://kit.fontawesome.com/009cda214e.js"></script>
-    <script src="assets/js/map.js"></script>
     
+      <!-- Script for Maps JavaScript API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH6SNpIN-Oebjc0RAWH65SXJeUAItUL5o&libraries=places&callback=initMap" type="text/javascript"></script>
+
+    
+    <script src="assets/js/map.js"></script>
+  
+        
 
     <title>City Safari</title>
 </head>
@@ -67,7 +73,8 @@
             <div class="col-12 col-md-8">
                 <div class="form-group">
                     <label class="col-form-label col-form-label-lg" for="inputLarge">Which city do you want information on?</label>
-                    <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="inputLarge">
+                    <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="city">
+                    <button onClick="searchCity()">Search</button>
                 </div>
             </div>
         </div>
@@ -91,24 +98,27 @@
                         <a class="nav-link active" data-toggle="tab" href="#attractions">Attractions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#bars-restaurants">Bars & Restaurants</a>
+                        <a class="nav-link" data-toggle="tab" href="#restaurants"onclick="getAttractions('restaurants')">Restaurants</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#accommodation">Accommodation</a>
+                        <a class="nav-link" data-toggle="tab" href="#bars" onclick="getAttractions('bars')">Bars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#accommodation" onclick="getAttractions('lodging')">Accommodation</a>
                     </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade show active" id="attractions">
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                        <p>Select a city above to display attractions...</p>
                     </div>
-                    <div class="tab-pane fade" id="bars-restaurants">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    <div class="tab-pane fade" id="restaurants">
+                        <p>Select a city above to display restaurants...</p>
+                    </div>
+                    <div class="tab-pane fade" id="bars">
+                        <p>Select a city above to display bars...</p>
                     </div>
                     <div class="tab-pane fade" id="accommodation">
-                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles
-                            etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                        <p>Select a city above to display accommodation...</p>
                     </div>
                 </div>
             </div>
@@ -165,8 +175,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <!-- Script for Maps JavaScript API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH6SNpIN-Oebjc0RAWH65SXJeUAItUL5o&callback=initMap" type="text/javascript"></script>
-</body>
+  </body>
 
 </html>
