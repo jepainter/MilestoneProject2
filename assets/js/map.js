@@ -59,7 +59,7 @@ function getAttractions(type) {
             //            console.log(results[1]);
             //Call populate table function
             populateTable(type, results);
-            console.log("Type: " + type);
+            //            console.log("Type: " + type);
         }
     });
 }
@@ -84,16 +84,48 @@ function createMapMarker(attraction) {
 // Populate table function to display search results
 function populateTable(attractionType, data) {
     console.log("Attraction type:" + attractionType);
-/*    var category = document.getElementById("attractions");
+    var category = document.getElementById("casino");
     category.innerHTML = ``;
 
-    // Table headers
-    var attractionHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Website</th>`;
-    var restaurantHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
-    var barHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
-    var accommodationHeaders = `<th>Name</th><th>Rating</th><th>Phone</th><th>Website</th>`;
-    var tableHeaders;
+        // Table headers
+        var attractionHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Website</th>`;
+        var restaurantHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
+        var barHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
+        var accommodationHeaders = `<th>Name</th><th>Rating</th><th>Phone</th><th>Website</th>`;
+        var tableHeaders;
+        
    
+        if (attractionType == "casino") {
+            tableHeaders = attractionHeaders;
+            category = document.getElementById("casino");
+            category.innerHTML = ``;
+        }
+        else {
+            if (attractionType == "restaurant") {
+                tableHeaders = restaurantHeaders;
+                category = document.getElementById("restaurants");
+                category.innerHTML = ``;
+            }
+            else {
+                if (attractionType == "bar") {
+                    tableHeaders = barHeaders;
+                    category = document.getElementById("bars");
+                    category.innerHTML = ``;
+                }
+                else {
+                    if (attractionType == "lodging") {
+                        tableHeaders = accommodationHeaders;
+                        category = document.getElementById("accommodation");
+                        category.innerHTML = ``;
+                    }
+                    else {
+                        console.log("error")
+                    }
+                }
+            }
+        }
+   
+
     var dataRow;
     var tableRow = ``;
     for (var i = 0; i < data.length; i++) {
@@ -103,5 +135,6 @@ function populateTable(attractionType, data) {
     }
     console.dir(data);
 
-    category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
-*/}
+    category.innerHTML = `<table>${tableHeaders}${tableRow}</table>`;
+
+}
