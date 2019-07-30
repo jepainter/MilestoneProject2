@@ -28,7 +28,7 @@ function citySelected() {
     if (city.geometry) {
         map.panTo(city.geometry.location);
         map.setZoom(12);
-        getAttractions("attractions");
+        getAttractions("casino");
     }
     else {
         document.getElementById("city").placeholder = 'Enter a city';
@@ -58,10 +58,10 @@ function getAttractions(type) {
             //            console.log(results.length);
             //            console.log(results[1]);
             //Call populate table function
-            populateTable(results);
+            populateTable(type, results);
+            console.log("Type: " + type);
         }
     });
-
 }
 
 // Marker creation function -- adapted from https://developers.google.com/maps/documentation/javascript/examples/place-search
@@ -82,8 +82,9 @@ function createMapMarker(attraction) {
 }
 
 // Populate table function to display search results
-function populateTable(data) {
-    var category = document.getElementById("attractions");
+function populateTable(attractionType, data) {
+    console.log("Attraction type:" + attractionType);
+/*    var category = document.getElementById("attractions");
     category.innerHTML = ``;
 
     // Table headers
@@ -91,7 +92,8 @@ function populateTable(data) {
     var restaurantHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
     var barHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
     var accommodationHeaders = `<th>Name</th><th>Rating</th><th>Phone</th><th>Website</th>`;
-
+    var tableHeaders;
+   
     var dataRow;
     var tableRow = ``;
     for (var i = 0; i < data.length; i++) {
@@ -102,4 +104,4 @@ function populateTable(data) {
     console.dir(data);
 
     category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
-}
+*/}
