@@ -95,13 +95,13 @@
             <div class="col-12" id="tables">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#attractions">Attractions</a>
+                        <a class="nav-link active" data-toggle="tab" href="#attractions" onclick="getAttractions('point_of_interest')">Attractions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#restaurants"onclick="getAttractions('restaurants')">Restaurants</a>
+                        <a class="nav-link" data-toggle="tab" href="#restaurants" onclick="getAttractions('restaurant')">Restaurants</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#bars" onclick="getAttractions('bars')">Bars</a>
+                        <a class="nav-link" data-toggle="tab" href="#bars" onclick="getAttractions('bar')">Bars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#accommodation" onclick="getAttractions('lodging')">Accommodation</a>
@@ -160,7 +160,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a target="_blank" aria-label="Link to Newsletter" rel="noopener" href="#">
+                        <a aria-label="Link to Newsletter" rel="noopener" data-toggle="modal" data-target="#newsletterModal">
                             <i class="fas fa-newspaper footer-icon" aria-hidden="true"></i>
                             <span class="sr-only">Newsletter</span>
                         </a>
@@ -169,6 +169,38 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Modal for Newsletter Signup -->
+     <div class="modal" tabindex="-1" role="dialog" id="newsletterModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content border-box">
+                <div class="modal-header bg-clr-red">
+                    <h5 class="modal-title">Sign up to City Safari Newsletter!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="contact-forms">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="First name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            <input type="text" class="form-control" id="surname" aria-describedby="surname" placeholder="Surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-red-transition">Sign Up!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts for function of navagation bar and toggler-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
