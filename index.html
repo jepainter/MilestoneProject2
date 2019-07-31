@@ -16,16 +16,16 @@
     <!-- Script for Maps JavaScript API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH6SNpIN-Oebjc0RAWH65SXJeUAItUL5o&libraries=places&callback=initMap" type="text/javascript"></script>
 
-
-    <script src="assets/js/map.js"></script>
-
-    <!-- Script for EmailJS -->
+    <!-- Scripts for EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
             emailjs.init("user_1BzZOfke2AZnbnh5MW30W");
         })();
     </script>
+
+    <!-- Script for managing maps -->
+    <script src="assets/js/map.js"></script>
 
     <title>City Safari</title>
 </head>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label class="col-form-label col-form-label-lg" for="inputLarge">Which city do you want information on?</label>
                     <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="city">
-                    <button onClick="searchCity()">Search</button>
+                    <!--                    <button onClick="searchCity()">Search</button> -->
                 </div>
             </div>
         </div>
@@ -97,7 +97,39 @@
 
     <!-- Section for display of data from API -->
     <section class="container-fluid column-padding">
-        <div class="row">
+        <div class="row justify-content-around">
+            <div class="col-10">
+                <div class="form-group">
+                    <!--https://stackoverflow.com/questions/6192446/javascript-dropdown-action-->
+                    <label for="attractionSelector">Select the attraction you want to view:</label>
+                    <select class="form-control" id="attractionSelector" onchange="attractionSelect(document.getElementById('attractionSelector').value);">
+                    <option value="aquarium">Aquariums</option>
+                    <option value="amusement_park">Amusement Parks</option>
+                    <option value="art_gallery">Art Galleries</option>
+                    <option value="casino">Casinos</option>
+                    <option value="museum">Museums</option>
+                    <option value="zoo">Zoos</option>
+                    <option value="restaurant">Restaurants</option>
+                    <option value="bar">Bars</option>
+                    <option value="night_club">Night Clubs</option>
+                    <option value="lodging">Accommodation</option>
+                </select>
+                </div>
+            </div>
+            <!--            <div class="col-12">
+                <button>Aquarium</button>
+                <button>Amusement Park</button>
+                <button>Art Gallery</button>
+                <button>Casino</button>
+                <button>Museum</button>
+                <button>Night Club></button>
+                <button>Zoo</button>
+                <button>Restaurant</button>
+                <button>Bar</button>
+                <button>Accommodation</button>
+            </div>-->
+        </div>
+        <!--        <div class="row">
             <div class="col-12" id="tables">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -128,7 +160,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </section>
 
     <!-- Footer section for disclaimer, API powered by, and social media links -->
@@ -189,12 +221,8 @@
                 <div class="modal-body">
                     <form class="contact-forms" onsubmit="return sendEmail(this);" method="POST">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="First name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surname">Surname</label>
-                            <input type="text" class="form-control" id="surname" aria-describedby="surname" placeholder="Surname" required>
+                            <label for="name">Name and Surname</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Name and Surname" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
@@ -212,7 +240,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+
     <!-- Script for newsletter sign up -->
     <script src="assets/js/newsletter.js"></script>
 
