@@ -16,7 +16,7 @@ function searchCity() {
     autocomplete = new google.maps.places.Autocomplete(document.getElementById("city"), {
         types: ['(cities)']
     });
-
+    //Error handling to be incorporated on invalid input
     autocomplete.addListener('place_changed', citySelected);
 }
 
@@ -28,12 +28,25 @@ function citySelected() {
     if (city.geometry) {
         map.panTo(city.geometry.location);
         map.setZoom(12);
-        getAttractions("casino");
+    //    getAttractions("point_of_interest");
+    //        getPointsOfInterest();
     }
     else {
         document.getElementById("city").placeholder = 'Enter a city';
     }
 }
+
+function attractionSelect(option) {
+    console.log(`Option Selected: + ${option}`);
+}
+
+/*
+function getPointsOfInterest(){
+    console.log("points of interest function called");
+    
+    
+}
+*/
 
 // Function to get attractions within a specified city -- adapted from https://developers.google.com/maps/documentation/javascript/examples/place-search
 function getAttractions(type) {
@@ -81,50 +94,53 @@ function createMapMarker(attraction) {
     });
 }
 
+//Function to remove markers
+function removeMapMarkers() {}
+
+
 // Populate table function to display search results
 function populateTable(attractionType, data) {
     console.log("Attraction type:" + attractionType);
-    var category = document.getElementById("casino");
+    var category = document.getElementById("attractions");
     category.innerHTML = ``;
 
-        // Table headers
-        var attractionHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Website</th>`;
-        var restaurantHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
-        var barHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
-        var accommodationHeaders = `<th>Name</th><th>Rating</th><th>Phone</th><th>Website</th>`;
-        var tableHeaders;
-        
-   
-        if (attractionType == "casino") {
-            tableHeaders = attractionHeaders;
-            category = document.getElementById("casino");
+    // Table headers
+    var attractionHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Website</th>`;
+    var restaurantHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
+    var barHeaders = `<th>Name</th><th>Type</th><th>Address</th><th>Rating</th><th>Phone</th>`;
+    var accommodationHeaders = `<th>Name</th><th>Rating</th><th>Phone</th><th>Website</th>`;
+    var tableHeaders;
+
+
+    if (attractionType == "point_of_interest") {
+        tableHeaders = attractionHeaders;
+        category = document.getElementById("attractions");
+        category.innerHTML = ``;
+    }
+    else {
+        if (attractionType == "restaurant") {
+            tableHeaders = restaurantHeaders;
+            category = document.getElementById("restaurants");
             category.innerHTML = ``;
         }
         else {
-            if (attractionType == "restaurant") {
-                tableHeaders = restaurantHeaders;
-                category = document.getElementById("restaurants");
+            if (attractionType == "bar") {
+                tableHeaders = barHeaders;
+                category = document.getElementById("bars");
                 category.innerHTML = ``;
             }
             else {
-                if (attractionType == "bar") {
-                    tableHeaders = barHeaders;
-                    category = document.getElementById("bars");
+                if (attractionType == "lodging") {
+                    tableHeaders = accommodationHeaders;
+                    category = document.getElementById("accommodation");
                     category.innerHTML = ``;
                 }
                 else {
-                    if (attractionType == "lodging") {
-                        tableHeaders = accommodationHeaders;
-                        category = document.getElementById("accommodation");
-                        category.innerHTML = ``;
-                    }
-                    else {
-                        console.log("error")
-                    }
+                    console.log("error")
                 }
             }
         }
-   
+    }
 
     var dataRow;
     var tableRow = ``;
@@ -135,6 +151,6 @@ function populateTable(attractionType, data) {
     }
     console.dir(data);
 
-    category.innerHTML = `<table>${tableHeaders}${tableRow}</table>`;
+    category.innerHTML = `<table id="dataTable">${tableHeaders}${tableRow}</table>`;
 
 }
