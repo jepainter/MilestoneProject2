@@ -13,7 +13,7 @@ function initMap() {
 
     searchCity();
     
- // remove not required   google.maps.event.addDomListener(document.getElementById('clearmap'), 'click', removeMarkers);
+ //remove not required google.maps.event.addDomListener(document.getElementById('clearmap'), 'click', clearTable);
 
 }
 
@@ -44,6 +44,7 @@ function citySelected() {
 
 function attractionSelect(option) {
     removeMarkers();
+    clearTable();
     console.log(`Option Selected: + ${option}`);
     getAttractions(option);
 }
@@ -153,4 +154,10 @@ function populateTable(attractionType, data) {
 //    console.dir(data);
 
     category.innerHTML = `<table id="dataTable">${attractionHeaders}${tableRow}</table>`;
+}
+
+//Function to clear data from table
+function clearTable(){
+    var category = document.getElementById("tables");
+    category.innerHTML = ``;
 }
