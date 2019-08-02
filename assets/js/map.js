@@ -66,9 +66,9 @@ function getAttractions(type) {
 
     attractions.nearbySearch(attractionAreaType, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                createMapMarker(results[i]);
-            }
+    //      for (var i = 0; i < results.length; i++) {
+                createMapMarker(results);
+    //        }
 
             map.setCenter(results[0].geometry.location);
             //            console.log(results.length);
@@ -80,12 +80,19 @@ function getAttractions(type) {
     });
 }
 
-// Marker creation function -- adapted from https://developers.google.com/maps/documentation/javascript/examples/place-search
+// Marker creation function with info display on click -- adapted from https://developers.google.com/maps/documentation/javascript/markers
 function createMapMarker(attraction) {
-    var marker = new google.maps.Marker({
-        map: map,
-        position: attraction.geometry.location
-    });
+    var markerLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var markerLabelIndex = 0;
+    console.dir(attraction);
+    
+    for (var i=0; i < attraction.length; i++){
+        var marker = new google.maps.Marker({
+            label: markerLabels[markerLabelIndex++ % markerLabels.length],
+            position: attraction[i].geometry.location,
+            map: map,
+        });
+    }
 
     google.maps.event.addListener(marker, 'click', function() {
         var info = new google.maps.InfoWindow();
@@ -98,7 +105,9 @@ function createMapMarker(attraction) {
 }
 
 //Function to remove markers
-function removeMapMarkers() {}
+function removeMapMarkers() {
+    createMapMarker(null);
+}
 
 
 // Populate table function to display search results
@@ -120,5 +129,4 @@ function populateTable(attractionType, data) {
     console.dir(data);
 
     category.innerHTML = `<table id="dataTable">${attractionHeaders}${tableRow}</table>`;
-
 }
