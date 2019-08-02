@@ -12,8 +12,8 @@ function initMap() {
     });
 
     searchCity();
-    
- //remove not required google.maps.event.addDomListener(document.getElementById('clearmap'), 'click', clearTable);
+
+    //remove not required google.maps.event.addDomListener(document.getElementById('clearmap'), 'click', clearTable);
 
 }
 
@@ -66,9 +66,9 @@ function getAttractions(type) {
 
     attractions.nearbySearch(attractionAreaType, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            //        for (var i = 0; i < results.length; i++) {
-        //    createMapMarker(results);
-            //     }
+                    for (var i = 0; i < results.length; i++) {
+                createMapMarker(results[i]);
+                 }
 
             map.setCenter(results[0].geometry.location);
             //            console.log(results.length);
@@ -84,15 +84,15 @@ function getAttractions(type) {
 function createMapMarker(attraction) {
 
     //  console.dir(attraction);
-    for (i = 0; i < attraction.length; i++) {
+  //  for (i = 0; i < attraction.length; i++) {
         var marker = new google.maps.Marker({
             label: markerLabels[markerLabelIndex++ % markerLabels.length],
-            position: attraction[i].geometry.location,
+            position: attraction.geometry.location,
             map: map,
         });
         mapMarkers.push(marker);
         //       console.log(mapMarkers[i]);
-    }
+    //}
 
     /*
         google.maps.event.addListener(marker, 'click', function() {
@@ -102,19 +102,37 @@ function createMapMarker(attraction) {
                 placeID: attraction.place_id,
                 fields: ['name', 'formatted_address', 'place_id', 'geometry']
             };
-            
+
             console.log(placeRequest);
-            
-            
+
+
 
             //        console.log(`Place: ${attraction.name}`);
+
+            info.setContent(`<h6>${attraction.name}</h6>
+                    <p>Place ID: ${attraction.place_id}</p>`);
+            info.open(map, this);
+        });
+
+    */
+     google.maps.event.addListener(marker, 'click', function() {
+            var info = new google.maps.InfoWindow();
+           /* var placeDetail = new google.maps.places.PlacesService(map);
+            var placeRequest = {
+                placeID: attraction.place_id,
+                fields: ['name', 'formatted_address', 'place_id', 'geometry']
+            };
+
+            console.log(placeRequest);
+
+
+            */
+                    console.log(`Place: ${attraction.name}`);
 
             info.setContent(`<h6>${attraction.name}</h6>
                 <p>Place ID: ${attraction.place_id}</p>`);
             info.open(map, this);
         });
-        
-        */
 }
 
 
@@ -123,7 +141,7 @@ function removeMarkers() {
     for (var i = 0; i < mapMarkers.length; i++) {
         mapMarkers[i].setMap(null);
     }
-    mapMarkers=[];
+    mapMarkers = [];
     markerLabelIndex = 0;
 }
 
@@ -142,22 +160,22 @@ function populateTable(attractionType, data) {
         dataRow = `<td>${data[i].name}</td><td>${data[i].types[0]}</td><td>${data[i].vicinity}</td><td>${data[i].rating}</td><td>url</td>`;
         tableRow += `<tr>${dataRow}</tr>`;
         dataRow = ``;
-        
+
     }
-    
-    createMapMarker(data);
-    
-//    console.dir(data);
-    
-//    data=[];
-    
-//    console.dir(data);
+
+//    createMapMarker(data);
+
+    //    console.dir(data);
+
+    //    data=[];
+
+    //    console.dir(data);
 
     category.innerHTML = `<table id="dataTable">${attractionHeaders}${tableRow}</table>`;
 }
 
 //Function to clear data from table
-function clearTable(){
+function clearTable() {
     var category = document.getElementById("tables");
     category.innerHTML = ``;
 }
