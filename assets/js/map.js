@@ -1,5 +1,8 @@
 var autocomplete;
 var map;
+var mapMarkers = [];
+var markerLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var markerLabelIndex = 0;
 
 //Initialise map object for display, call function to search for city
 function initMap() {
@@ -9,6 +12,9 @@ function initMap() {
     });
 
     searchCity();
+    
+ // remove not required   google.maps.event.addDomListener(document.getElementById('clearmap'), 'click', removeMarkers);
+
 }
 
 //Search function for cities, using autocomplete from Google Places API -- adapted from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
@@ -28,8 +34,8 @@ function citySelected() {
     if (city.geometry) {
         map.panTo(city.geometry.location);
         map.setZoom(12);
-    //    getAttractions("point_of_interest");
-    //        getPointsOfInterest();
+        //    getAttractions("point_of_interest");
+        //        getPointsOfInterest();
     }
     else {
         document.getElementById("city").placeholder = 'Enter a city';
@@ -37,22 +43,15 @@ function citySelected() {
 }
 
 function attractionSelect(option) {
+    removeMarkers();
     console.log(`Option Selected: + ${option}`);
     getAttractions(option);
 }
 
-/*
-function getPointsOfInterest(){
-    console.log("points of interest function called");
-    
-    
-}
-*/
 
 // Function to get attractions within a specified city -- adapted from https://developers.google.com/maps/documentation/javascript/examples/place-search
 function getAttractions(type) {
     //    console.log(`City: ${detail.geometry.location}`);
-    
     console.log(`Attraction type: ${type}`);
 
     var attractionAreaType = {
@@ -66,9 +65,9 @@ function getAttractions(type) {
 
     attractions.nearbySearch(attractionAreaType, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-    //      for (var i = 0; i < results.length; i++) {
-                createMapMarker(results);
-    //        }
+            //        for (var i = 0; i < results.length; i++) {
+        //    createMapMarker(results);
+            //     }
 
             map.setCenter(results[0].geometry.location);
             //            console.log(results.length);
@@ -82,33 +81,50 @@ function getAttractions(type) {
 
 // Marker creation function with info display on click -- adapted from https://developers.google.com/maps/documentation/javascript/markers
 function createMapMarker(attraction) {
-    var markerLabels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var markerLabelIndex = 0;
-    console.dir(attraction);
-    
-    for (var i=0; i < attraction.length; i++){
+
+    //  console.dir(attraction);
+    for (i = 0; i < attraction.length; i++) {
         var marker = new google.maps.Marker({
             label: markerLabels[markerLabelIndex++ % markerLabels.length],
             position: attraction[i].geometry.location,
             map: map,
         });
+        mapMarkers.push(marker);
+        //       console.log(mapMarkers[i]);
     }
 
-    google.maps.event.addListener(marker, 'click', function() {
-        var info = new google.maps.InfoWindow();
+    /*
+        google.maps.event.addListener(marker, 'click', function() {
+            var info = new google.maps.InfoWindow();
+            var placeDetail = new google.maps.places.PlacesService(map);
+            var placeRequest = {
+                placeID: attraction.place_id,
+                fields: ['name', 'formatted_address', 'place_id', 'geometry']
+            };
+            
+            console.log(placeRequest);
+            
+            
 
-        //        console.log(`Place: ${attraction.name}`);
+            //        console.log(`Place: ${attraction.name}`);
 
-        info.setContent(attraction.name);
-        info.open(map, this);
-    });
+            info.setContent(`<h6>${attraction.name}</h6>
+                <p>Place ID: ${attraction.place_id}</p>`);
+            info.open(map, this);
+        });
+        
+        */
 }
 
-//Function to remove markers
-function removeMapMarkers() {
-    createMapMarker(null);
-}
 
+// Removes the markers from the map, but keeps them in the array - adapted from https://jsfiddle.net/upsidown/b5r4nm3s/.
+function removeMarkers() {
+    for (var i = 0; i < mapMarkers.length; i++) {
+        mapMarkers[i].setMap(null);
+    }
+    mapMarkers=[];
+    markerLabelIndex = 0;
+}
 
 // Populate table function to display search results
 function populateTable(attractionType, data) {
@@ -125,8 +141,16 @@ function populateTable(attractionType, data) {
         dataRow = `<td>${data[i].name}</td><td>${data[i].types[0]}</td><td>${data[i].vicinity}</td><td>${data[i].rating}</td><td>url</td>`;
         tableRow += `<tr>${dataRow}</tr>`;
         dataRow = ``;
+        
     }
-    console.dir(data);
+    
+    createMapMarker(data);
+    
+//    console.dir(data);
+    
+//    data=[];
+    
+//    console.dir(data);
 
     category.innerHTML = `<table id="dataTable">${attractionHeaders}${tableRow}</table>`;
 }
