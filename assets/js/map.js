@@ -155,7 +155,7 @@ function populateTable(attractionType, data) {
     //category.innerHTML = ``;
 
     // Table headers
-    var attractionHeaders = `<tr><th>Name</th><th>Address</th><th>Phone Number</th><th>Website</th></tr>`;
+    var attractionHeaders = `<tr><th>Marker</th><th>Name</th><th>Address</th><th>Phone Number</th><th>Website</th></tr>`;
     var dataRow=``;
     var tableRow=``;
 //    category.innerHTML = `${attractionHeaders}`;
@@ -165,26 +165,28 @@ function populateTable(attractionType, data) {
     for (var i = 0; i < data.length; i++) {
         var placeRequest = {
             placeId: data[i].place_id,
-            fields: ['name', 'formatted_address', 'international_phone_number', 'website']
+            fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry']
         };
-        
         
 
         service.getDetails(placeRequest, function(place, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 //console.log('Place Name: ' + place.name + 'Place ID: ' + place.formatted_address + 'Place Rating: ' + place.rating + 'Website: ' + place.website);
-                tableRow += `<tr><td>${place.name}</td><td>${place.formatted_address}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Link to site" rel="noopener" href=${place.website}>Link to site</a></td></tr>`;
+                tableRow += `<tr><td>${markerLabels[markerLabelIndex]}</td><td>${place.name}</td><td>${place.formatted_address}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Link to site" rel="noopener" href=${place.website}>Link to site</a></td></tr>`;
                 //console.log(dataRow);
                // console.log(tableRow);
                // console.log(`table Row ${tableRow}`);
                 //console.log(tableRow);
                 //dataRow = [];
               //  category.innerHTML = `<table>${tableRow}</table>`
+                createMapMarker(place);
+                
             }
         category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>` ;   
         //console.log(dataRow);
         dataRow += tableRow;
         //    console.log(dataRow);
+       
         });
         
 //        category.innerHTML = `<table>${tableRow}</table>`;
