@@ -45,19 +45,13 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#citySelector">City</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#map">Map</a>
+                    <a class="nav-link" href="#attractionSelector">Attractions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#attractions">Attractions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#bars-restaurants">Bars and Restaurants</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#accommodation">Accommodation</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
             </ul>
         </div>
@@ -77,9 +71,9 @@
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
             <div class="col-12 col-md-8">
-                <div class="form-group">
+                <div class="form-group" id="citySelector">
                     <label class="col-form-label col-form-label-lg" for="inputLarge">Which city do you want information on?</label>
-                    <input class="form-control form-control-lg" type="text" placeholder="Enter a city you want to view..." id="city">
+                    <input class="form-control form-control-lg" type="text" placeholder="Paris, France" id="city">
                     <!--                    <button onClick="searchCity()">Search</button> -->
                 </div>
             </div>
@@ -103,6 +97,7 @@
                     <!--https://stackoverflow.com/questions/6192446/javascript-dropdown-action-->
                     <label for="attractionSelector">Select the attraction you want to view:</label>
                     <select class="form-control" id="attractionSelector" onchange="attractionSelect(document.getElementById('attractionSelector').value);">
+                    <option selected disabled>Select attraction...</option>
                     <option value="aquarium">Aquariums</option>
                     <option value="amusement_park">Amusement Parks</option>
                     <option value="art_gallery">Art Galleries</option>
@@ -116,55 +111,15 @@
                 </select>
                 </div>
             </div>
-            <!--            <div class="col-12">
-                <button>Aquarium</button>
-                <button>Amusement Park</button>
-                <button>Art Gallery</button>
-                <button>Casino</button>
-                <button>Museum</button>
-                <button>Night Club></button>
-                <button>Zoo</button>
-                <button>Restaurant</button>
-                <button>Bar</button>
-                <button>Accommodation</button>
-            </div>-->
         </div>
-        <!--        <div class="row">
-            <div class="col-12" id="tables">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#attractions" onclick="getAttractions('point_of_interest')">Attractions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#restaurants" onclick="getAttractions('restaurant')">Restaurants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#bars" onclick="getAttractions('bar')">Bars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#accommodation" onclick="getAttractions('lodging')">Accommodation</a>
-                    </li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade show active" id="attractions">
-                        <p>Select a city above to display attractions...</p>
-                    </div>
-                    <div class="tab-pane fade" id="restaurants">
-                        <p>Select a city above to display restaurants...</p>
-                    </div>
-                    <div class="tab-pane fade" id="bars">
-                        <p>Select a city above to display bars...</p>
-                    </div>
-                    <div class="tab-pane fade" id="accommodation">
-                        <p>Select a city above to display accommodation...</p>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-12" id="table">
             </div>
-        </div>-->
+        </div>
     </section>
 
     <!-- Footer section for disclaimer, API powered by, and social media links -->
-    <footer class="container-fluid">
+    <footer class="container-fluid" id="about">
         <div class="row">
             <div class="col-12 column-padding bg-clr-red">
                 <h5 class="text-center"><em>This site is powered by Google Maps API.</em></h5>
