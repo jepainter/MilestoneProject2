@@ -31,6 +31,8 @@ function searchCity() {
 // Function to get city details and zoom to city  -- adapted from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
 function citySelected() {
     var city = autocomplete.getPlace();
+    removeMarkers();
+    clearTable();
     console.log(`the city is ${city.geometry.location}`);
     //Try catch to be inserted for error handling
     if (city.geometry) {
@@ -72,10 +74,11 @@ function getAttractions(type) {
         //        createMapMarker(results[i]);
           //  }
 
-            map.setCenter(results[0].geometry.location);
+        //    map.setCenter(results[0].geometry.location);
             //            console.log(results.length);
             //            console.log(results[1]);
             //Call populate table function
+            console.dir(results);
             populateTable(type, results);
             //            console.log("Type: " + type);
         }
@@ -133,7 +136,7 @@ function createMapMarker(attraction) {
          */
         console.log(`Place: ${attraction.name}`);
         info.setContent(`<h6>${attraction.name}</h6>
-                <p>Place ID: ${attraction.place_id}</p>`);
+                <p>Place ID: ${attraction.international_phone_number}</p>`);
         info.open(map, this);
     });
 }
@@ -150,6 +153,8 @@ function removeMarkers() {
 
 // Populate table function to display search results
 function populateTable(attractionType, data) {
+    console.dir(data);
+    
     //console.log("Attraction type:" + attractionType);
     var category = document.getElementById("table");
     //category.innerHTML = ``;
@@ -161,14 +166,16 @@ function populateTable(attractionType, data) {
 //    category.innerHTML = `${attractionHeaders}`;
  //   console.log(dataRow);
     var service = new google.maps.places.PlacesService(map);
-    
+  
+   //   var service;  
     for (var i = 0; i < data.length; i++) {
         var placeRequest = {
             placeId: data[i].place_id,
             fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry']
         };
+       // console.log(data[i]);
         
-
+        
         service.getDetails(placeRequest, function(place, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 //console.log('Place Name: ' + place.name + 'Place ID: ' + place.formatted_address + 'Place Rating: ' + place.rating + 'Website: ' + place.website);
@@ -180,7 +187,7 @@ function populateTable(attractionType, data) {
                 //dataRow = [];
               //  category.innerHTML = `<table>${tableRow}</table>`
                 createMapMarker(place);
-                
+                console.log(data[i]);       
             }
         category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>` ;   
         //console.log(dataRow);
