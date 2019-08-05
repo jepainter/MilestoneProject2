@@ -1,3 +1,4 @@
+//Function to send captured information to email address a part of form submission
 function sendEmail(contactInfo){
     emailjs.send("gmail", "testemail", {
         "from_name": contactInfo.name.value,
