@@ -119,7 +119,7 @@ function populateTable(attractionType, data) {
     var category = document.getElementById("table");
 
     // Table variables
-    var attractionHeaders = `<tr><th>Marker</th><th>Name</th><th>Address</th><th>Phone Number</th><th>Website</th></tr>`;
+    var attractionHeaders = `<tr><th>Marker</th><th>Name</th><th>Rating</th><th>Phone Number</th><th>Website</th></tr>`;
     var tableRow=``;
 
     var service = new google.maps.places.PlacesService(map);
@@ -130,7 +130,7 @@ function populateTable(attractionType, data) {
         //Variable parameters of fields to return from request
         var placeRequest = {
             placeId: data[i].place_id,
-            fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry']
+            fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry', 'rating']
         };
         
         //Request to Places API, populate of table rows
@@ -138,7 +138,7 @@ function populateTable(attractionType, data) {
             
             //Error handling to be incorporated
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-                tableRow += `<tr><td>${markerLabels[markerLabelIndex]}</td><td>${place.name}</td><td>${place.formatted_address}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Link to site" rel="noopener" href=${place.website}>Link to site</a></td></tr>`;
+                tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
                 createMapMarker(place);
             }
         
