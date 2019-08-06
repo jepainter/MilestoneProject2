@@ -29,7 +29,7 @@ function searchCity() {
 
 // Function to get city details and zoom to city  -- adapted from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
 function citySelected() {
-    
+
     //Variable to store city selected
     var city = autocomplete.getPlace();
 
@@ -44,17 +44,17 @@ function citySelected() {
         map.setZoom(12);
     }
     else {
-        document.getElementById("city").placeholder = 'Enter a city';
+        document.getElementById("city").placeholder = 'Enter a valid city';
     }
 }
 
 // Function to initialise search for attractions
 function attractionSelect(option) {
-    
+
     // Functions to clear tables and markers if new attraction selected
     removeMarkers();
     clearTable();
-    
+
     //Call to get attractions based on selection
     getAttractions(option);
 }
@@ -77,6 +77,10 @@ function getAttractions(type) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             //Call to populate table function using results from nearby search together with type
             populateTable(type, results);
+        }
+        else {
+            document.getElementById("table").innerHTML = `No data available.`;
+            alert("There was an error, results not available because of: " + status);
         }
     });
 }
@@ -120,32 +124,71 @@ function populateTable(attractionType, data) {
 
     // Table variables
     var attractionHeaders = `<tr><th>Marker</th><th>Name</th><th>Rating</th><th>Phone Number</th><th>Website</th></tr>`;
-    var tableRow=``;
+    var tableRow = ``;
 
     var service = new google.maps.places.PlacesService(map);
-    
-    //For loop to request details from Places API and print to html
-    for (var i = 0; i < data.length; i++) {
-        
-        //Variable parameters of fields to return from request
-        var placeRequest = {
-            placeId: data[i].place_id,
-            fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry', 'rating']
-        };
-        
-        //Request to Places API, populate of table rows
-        service.getDetails(placeRequest, function(place, status) {
-            
-            //Error handling to be incorporated
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
-                createMapMarker(place);
-            }
-        
-        //Print results to html
-        category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>` ;   
-        });
-    }
+
+    //Execution of setInterval to overcome Over Query Limit for requests to Google Places API -- adapted from https://medium.com/@eric.stermer/setinterval-simply-put-is-a-timed-loop-652eb54bd5f8
+    var i = 0;
+    var intervalId = setInterval(function() {
+
+        if (i === data.length) {
+            clearInterval(intervalId);
+        }
+        else {
+
+            //Variable parameters of fields to return from request
+            var placeRequest = {
+                placeId: data[i].place_id,
+                fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry', 'rating']
+            };
+
+            //Request to Places API, populate of table rows
+            service.getDetails(placeRequest, function(place, status) {
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
+                    createMapMarker(place);
+                }
+                else {
+                    category.innerHTML = `No data available`;
+                    console.log("There was an error with data retrieval because of: " + status);
+                }
+
+                //Print results to html
+                category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
+            });
+
+            i++;
+        }
+    }, 300);
+
+    /*    //For loop to request details from Places API and print to html
+        for (var i = 0; i < data.length; i++) {
+
+            //Variable parameters of fields to return from request
+            var placeRequest = {
+                placeId: data[i].place_id,
+                fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry', 'rating']
+            };
+
+            //Request to Places API, populate of table rows
+            service.getDetails(placeRequest, function(place, status) {
+
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
+                    createMapMarker(place);
+                }
+                else {
+                    category.innerHTML = `No data available`;
+                    console.log("There was an error with data retrieval because of: " + status);
+                }
+
+                //Print results to html
+                category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
+            });
+        }
+    */
 }
 
 //Function to clear data from table
