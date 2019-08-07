@@ -9,6 +9,7 @@
 
 .bg-clr-orange {
     background-color:#ffd400bf;
+    color: #000;
 }
 
 .bg-clr-white {
@@ -77,20 +78,59 @@ body:after {
     background-color: rgba(72,72,72, 0.65);
 }
 
+.jumbotron {
+    margin: 0px;
+}
+
 /* Map area */
+
+.col-form-label, .form-control {
+    color:#000;
+}
+
+#city:focus, #attractionSelector:focus {
+    box-shadow: inset 0 -2px 0 #fafafa;
+}
+
 #map {
     height: 60vh !important;
 }
 
-/* Table area 
-#table {
-    height:100vh !important;
-}*/
+/* Table styling */
+
+.table th {
+    border: 0px;
+}
+
+.table th, .table td {
+    padding: 6px 3px 6px 3px;
+    background: #fafafa00;
+    color: #fafafa;
+}
+
+.table-light {
+     background: #fafafa00;
+}
+
+a {
+    color: #fafafa;
+    font-weight: bolder;
+}
+
+a:hover {
+    color: #fafafa;
+    font-weight: bolder;
+    text-decoration: none;
+}
 
 /* Footer styling */
 
 .column-padding {
     padding: 15px;
+}
+
+.top-pad {
+    padding-top: 100px;
 }
 
 .border-round {
@@ -100,7 +140,7 @@ body:after {
 .footer-icon {
     font-size: 24px;
     padding: 5px;
-    color: #e51c23;
+    color: #a90006;
     border: 4px solid #ffd40000;
     border-radius: 100%;
     transition: 0.5s ease-in-out;
@@ -119,9 +159,13 @@ body:after {
         max-height: 60px;
     }
     
+    .top-pad {
+        padding-top:150px;
+    }
+    
     /*Footer styling*/
     .footer-icon:hover {
-        border: 4px solid #e51c23;
+        border: 4px solid #a90006;
         border-radius: 100%;
     }
 }
