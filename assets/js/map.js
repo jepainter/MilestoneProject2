@@ -10,7 +10,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 48.857049, lng: 2.335665 },
-        zoom: 8
+        zoom: 11
     });
 
     //Function called to initialise auto complete search function for city
@@ -23,7 +23,6 @@ function searchCity() {
     autocomplete = new google.maps.places.Autocomplete(document.getElementById("city"), {
         types: ['(cities)']
     });
-    //Error handling to be incorporated on invalid input
     autocomplete.addListener('place_changed', citySelected);
 }
 
@@ -37,7 +36,6 @@ function citySelected() {
     removeMarkers();
     clearTable();
 
-    //Try catch to be inserted for error handling
     //Function to pan map to city selected
     if (city.geometry) {
         map.panTo(city.geometry.location);
@@ -123,7 +121,7 @@ function populateTable(attractionType, data) {
     var category = document.getElementById("table");
 
     // Table variables
-    var attractionHeaders = `<tr><th>Marker</th><th>Name</th><th>Rating</th><th>Phone Number</th><th>Website</th></tr>`;
+    var attractionHeaders = `<tr><th>#</th><th>Name</th><th>Rating</th><th>Phone Number</th><th>Website</th></tr>`;
     var tableRow = ``;
 
     var service = new google.maps.places.PlacesService(map);
@@ -147,52 +145,26 @@ function populateTable(attractionType, data) {
             service.getDetails(placeRequest, function(place, status) {
 
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
+                    tableRow += `<tr class="table-light"><td><a class="table-link" href="#citySelector">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button class="btn btn-warning btn-sm">Link</button></a></td></tr>`;
                     createMapMarker(place);
                 }
                 else {
                     category.innerHTML = `No data available`;
-                    console.log("There was an error with data retrieval because of: " + status);
+                    alert("There was an error with data retrieval because of: " + status);
                 }
 
                 //Print results to html
-                category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
+                category.innerHTML = `<table class="table">${attractionHeaders}${tableRow}</table>`;
             });
 
             i++;
         }
     }, 300);
-
-    /*    //For loop to request details from Places API and print to html
-        for (var i = 0; i < data.length; i++) {
-
-            //Variable parameters of fields to return from request
-            var placeRequest = {
-                placeId: data[i].place_id,
-                fields: ['name', 'formatted_address', 'international_phone_number', 'website', 'geometry', 'rating']
-            };
-
-            //Request to Places API, populate of table rows
-            service.getDetails(placeRequest, function(place, status) {
-
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    tableRow += `<tr><td><a href="#map">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button>Website</button></a></td></tr>`;
-                    createMapMarker(place);
-                }
-                else {
-                    category.innerHTML = `No data available`;
-                    console.log("There was an error with data retrieval because of: " + status);
-                }
-
-                //Print results to html
-                category.innerHTML = `<table>${attractionHeaders}${tableRow}</table>`;
-            });
-        }
-    */
 }
 
 //Function to clear data from table
 function clearTable() {
+    
     var category = document.getElementById("table");
     category.innerHTML = ``;
 }
