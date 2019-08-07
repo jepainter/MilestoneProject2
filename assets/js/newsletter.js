@@ -6,10 +6,10 @@ function sendEmail(contactInfo){
     })
     .then (
         function(response){
-            console.log("Email was successfully sent", response);
+            alert("Email was successfully sent, you can close the sign-up form.", response);
         },
         function(error){
-           console.log("Error: Email not sent", error); 
+           alert("Error: Email not sent, please try again later.", error); 
         });
         return false;
 }
