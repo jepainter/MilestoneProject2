@@ -82,6 +82,18 @@ body:after {
     margin: 0px;
 }
 
+.jumbotron-heading {
+    color: #fafafa;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.jumbotron-text {
+    margin: 30px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
 /* Map area */
 
 .col-form-label, .form-control {
@@ -112,18 +124,17 @@ body:after {
      background: #fafafa00;
 }
 
-a {
+.table-link {
     color: #fafafa;
     font-weight: bolder;
+    font-size: 16px;
 }
 
-a:hover {
+.table-link:hover {
     color: #fafafa;
     font-weight: bolder;
     text-decoration: none;
 }
-
-/* Footer styling */
 
 .column-padding {
     padding: 15px;
@@ -136,6 +147,8 @@ a:hover {
 .border-round {
     border-radius: 15px;
 }
+
+/* Footer styling */
 
 .footer-icon {
     font-size: 24px;
