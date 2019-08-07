@@ -9,9 +9,9 @@
     <!-- Stylesheets - Bootswatch Materia theme for styling HTML, style.css specific styling for overrides -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    
+
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
 
     <!-- Scripts - Font Awesome to manage social media icons -->
     <script src="https://kit.fontawesome.com/009cda214e.js"></script>
@@ -36,37 +36,43 @@
 <body>
 
     <!-- Navigation bar for site -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <a class="navbar-brand" href="index.html">
+        <nav class="navbar navbar-expand-md navbar-dark bg-clr-dark fixed-top">
+            <a class="navbar-brand" href="index.html">
             <img src="assets/images/logo-only.png" alt="City Safari Logo">
             <span class="navbar-brand-text">City Safari</span>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#citySelector">City</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#attractionSelector">Attractions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#citySelectorLink">City</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#attractionSelectorLink">Attractions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
     <!-- Greating section -->
-    <section class="container-fluid column-padding">
+    <section class="container-fluid column-padding top-pad">
+        <div class="opaque-overlay">
+        </div>
+        <div id="citySelectorLink"></div>
         <div class="row justify-content-around">
-            <div class="col-12 col-md-8">
-                <h2 class="text-center">Welcome to City Safari</h2>
-                <h5 class="text-center">City Safari provides travel information for cities you want to visit.</h5></h5>
-                <h5 class="text-center"><em>Just input the city and attractions you want to see and we will do the rest for you!!!</em></h5>
+            <div class="col-11 col-md-8">
+                <div class="jumbotron border-round bg-clr-red">
+                    <h2 class="text-center">Welcome to City Safari</h2>
+                    <p></p>
+                    <h5 class="text-center">City Safari provides travel information for cities you want to visit.</h5>
+                    <h5 class="text-center"><em>Just input the city and attractions you want to see and we will do the rest for you!!!</em></h5>
+                </div>
             </div>
         </div>
     </section>
@@ -74,7 +80,7 @@
     <!-- Section for selection of city -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-8">
+            <div class="col-11 col-md-8 border-round bg-clr-orange">
                 <div class="form-group" id="citySelector">
                     <label class="col-form-label col-form-label-lg" for="city">Which city do you want information on?</label>
                     <input class="form-control form-control-lg" type="text" placeholder="Paris, France" id="city">
@@ -86,15 +92,16 @@
     <!-- Section for display of map -->
     <section class="container-fluid">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-10" id="map">
+            <div class="col-12 col-md-10 border-round bg-clr-white" id="map">
             </div>
         </div>
+        <div id="attractionSelectorLink"></div>
     </section>
 
     <!-- Section for display of attraction selector -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-8">
+            <div class="col-11 col-md-8 border-round bg-clr-orange">
                 <div class="form-group">
                     <!--https://stackoverflow.com/questions/6192446/javascript-dropdown-action-->
                     <label class="col-form-label col-form-label-lg" for="attractionSelector">Select the attraction you want to view:</label>
@@ -115,11 +122,11 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Section for display of data from API -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-10" id="table">
+            <div class="col-12 col-md-10 border-round bg-clr-red" id="table">
             </div>
         </div>
     </section>
