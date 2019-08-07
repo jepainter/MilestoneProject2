@@ -17,11 +17,11 @@
     <script src="https://kit.fontawesome.com/009cda214e.js"></script>
 
     <!-- Script for Google Maps JavaScript and Places APIs -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH6SNpIN-Oebjc0RAWH65SXJeUAItUL5o&libraries=places&callback=initMap" type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH6SNpIN-Oebjc0RAWH65SXJeUAItUL5o&libraries=places&callback=initMap"></script>
 
     <!-- Scripts for EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script>
         (function() {
             emailjs.init("user_1BzZOfke2AZnbnh5MW30W");
         })();
@@ -36,29 +36,29 @@
 <body>
 
     <!-- Navigation bar for site -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-clr-dark fixed-top">
-            <a class="navbar-brand" href="index.html">
+    <nav class="navbar navbar-expand-md navbar-dark bg-clr-dark fixed-top">
+        <a class="navbar-brand" href="index.html">
             <img src="assets/images/logo-only.png" alt="City Safari Logo">
             <span class="navbar-brand-text">City Safari</span>
         </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#citySelectorLink">City</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#attractionSelectorLink">Attractions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#citySelectorLink">City</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#attractionSelectorLink">Attractions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Greating section -->
     <section class="container-fluid column-padding top-pad">
@@ -66,12 +66,10 @@
         </div>
         <div id="citySelectorLink"></div>
         <div class="row justify-content-around">
-            <div class="col-11 col-md-8">
-                <div class="jumbotron border-round bg-clr-red">
-                    <h2 class="text-center jumbotron-heading">Welcome to City Safari</h2>
-                    <p class="text-center jumbotron-text">City Safari provides travel information for cities you want to visit.</p>
-                    <p class="text-center jumbotron-text"><em>Just input the city and attractions you want to see and we will do the rest for you!!!</em></p>
-                </div>
+            <div class="jumbotron col-11 col-md-10 col-lg-8 border-round bg-clr-dark">
+                <h2 class="text-center jumbotron-heading">Welcome to City Safari</h2>
+                <p class="text-center jumbotron-text">City Safari provides travel information for cities you want to visit.</p>
+                <p class="text-center jumbotron-text"><em>Just input the city and attractions you want to see and we will do the rest for you!!!</em></p>
             </div>
         </div>
     </section>
@@ -79,7 +77,7 @@
     <!-- Section for selection of city -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-11 col-md-8 border-round bg-clr-orange">
+            <div class="col-11 col-md-10 col-lg-8 border-round bg-clr-orange">
                 <div class="form-group" id="citySelector">
                     <label class="col-form-label col-form-label-lg" for="city"><strong>Which city do you want information on?</strong></label>
                     <input class="form-control form-control-lg" type="text" placeholder="Paris, France" id="city">
@@ -91,7 +89,7 @@
     <!-- Section for display of map -->
     <section class="container-fluid">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-10 border-round bg-clr-white" id="map">
+            <div class="col-12 col-md-10 col-lg-8 border-round bg-clr-white" id="map">
             </div>
         </div>
         <div id="attractionSelectorLink"></div>
@@ -100,7 +98,7 @@
     <!-- Section for display of attraction selector -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-11 col-md-8 border-round bg-clr-orange">
+            <div class="col-11 col-md-10 col-lg-8 border-round bg-clr-orange">
                 <div class="form-group">
                     <!--https://stackoverflow.com/questions/6192446/javascript-dropdown-action-->
                     <label class="col-form-label col-form-label-lg" for="attractionSelector"><strong>Select the attraction you want to view:</strong></label>
@@ -125,7 +123,7 @@
     <!-- Section for display of data from API -->
     <section class="container-fluid column-padding">
         <div class="row justify-content-around">
-            <div class="col-12 col-md-10 border-round bg-clr-dark" id="table">
+            <div class="col-12 col-md-10 col-lg-8 border-round bg-clr-dark" id="table">
             </div>
         </div>
     </section>
@@ -134,7 +132,7 @@
     <footer class="container-fluid" id="about">
         <div class="row">
             <div class="col-12 column-padding bg-clr-red">
-                <h6 class="text-center"><em>This site is powered by the Google Maps JavaScript and Places APIs.</em></h6>
+                <h6 class="text-center"><em>This site is powered by the Google Maps JavaScript API and Places Library.</em></h6>
             </div>
         </div>
         <div class="row">
@@ -165,7 +163,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a aria-label="Link to Newsletter" rel="noopener" data-toggle="modal" data-target="#newsletterModal">
+                        <a aria-label="Link to Newsletter" rel="noopener" data-toggle="modal" data-target="#newsletterModal" href="#">
                             <i class="fas fa-newspaper footer-icon" aria-hidden="true"></i>
                             <span class="sr-only">Newsletter</span>
                         </a>

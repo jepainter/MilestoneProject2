@@ -44,9 +44,6 @@ body:after {
     z-index: -2;
     /* needed to keep in the background */
     background: url("../images/citybackground.jpg") center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
 }
 
@@ -83,7 +80,7 @@ body:after {
 }
 
 .jumbotron-heading {
-    color: #fafafa;
+    color: #ff6363;
     font-weight: bold;
     margin-bottom: 30px;
 }
@@ -101,7 +98,8 @@ body:after {
 }
 
 #city:focus, #attractionSelector:focus {
-    box-shadow: inset 0 -2px 0 #fafafa;
+    -webkit-box-shadow: inset 0 -2px 0 #fafafa;
+            box-shadow: inset 0 -2px 0 #fafafa;
 }
 
 #map {
@@ -156,6 +154,8 @@ body:after {
     color: #a90006;
     border: 4px solid #ffd40000;
     border-radius: 100%;
+    -webkit-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
 }
 
