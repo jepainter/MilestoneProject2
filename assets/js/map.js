@@ -146,6 +146,18 @@ function populateTable(attractionType, data) {
             service.getDetails(placeRequest, function(place, status) {
 
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    // Statements to catch undefined results from Places Library for better table results
+                    if(place.rating===undefined){
+                        place.rating = "N/A";
+                    }
+                    if(place.international_phone_number===undefined){
+                        place.international_phone_number = "N/A";
+                    }
+                    if(place.website===undefined){
+                        place.website = "N/A";
+                    }
+                    
+                    //Populate table with each result, corrected for undefined responses
                     tableRow += `<tr class="table-light"><td><a class="table-link" href="#citySelector">${markerLabels[markerLabelIndex]}<a></td><td>${place.name}</td><td>${place.rating}</td><td>${place.international_phone_number}</td><td><a target="_blank" aria-label="Website" rel="noopener" href=${place.website}><button class="btn btn-warning btn-sm">Link</button></a></td></tr>`;
                     createMapMarker(place);
                 }
