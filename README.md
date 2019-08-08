@@ -16,8 +16,8 @@ The website utilises the Google Maps API and Google Places Library to return and
 
 Limitations:
 - The website delivers a maximum of 20 search results for each type of attraction, this can be expanded upon in future by implementation of **pagination** up to 60 search results (as per Google Maps API documentation).
-- The website delivers detailed place information, however some information fields may be returned as **undefined** where information is not available from the Google Places Library.
-- The detailed place information is limited to 10 queries per second (as per Google Places API documentation), and therefore the request had to be throttled (using setInterval) in order to retrieve data for the full list of 20 places.
+- The website delivers detailed place information, however some information fields may be returned as **undefined** where information is not available from the Google Places Library, this has been caught in the map.js and replaced with N/A for better visual appearance.
+- The detailed place information is limited to 10 queries per second (as per Google Places Library documentation), and therefore the request had to be throttled (using setInterval) in order to retrieve data for the full list of 20 places, which affects speed of results returned.
   Upgrading the usage plan will another solution for this problem, however would possibly incur additional costs and are considered outside of the scope of this project.
 - Website links to third party sites (populated in data table) cannot be guarenteed to be safe/secure or valid/available as it is dependent on the results returned from the Google Places Library.
 
