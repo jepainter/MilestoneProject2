@@ -153,6 +153,7 @@ This site was also tested manually in line with the user stories and general fun
     5. Try to submit the form with all inputs valid with no errors, verified working correctly.
     6. Email received in test email mailbox if successfull submission, verified working correctly.
     7. Alert message displayed indicating that for submitted successfully, verified working correctly.
+    8. Modal closes after successful submit, and content is cleared from modal, verified working correctly.
 
 2. Footers:
     1. Go to Footer section on page.
@@ -187,10 +188,6 @@ This site was also tested manually in line with the user stories and general fun
     4. Map marker labels are aligned to table # references, verfied working correctly.
     5. Upon new attraction selected, table and map markers are cleared, verfied working correctly.
     6. Upon new attraction selected, a new table and map markers are populated into the page, verified working correctly.
-
-### Known Bugs
-1. Newsletter Sign-Up Form does not reset input fields after submission.
-2. Attraction Selector does not default to initial selection ("Select attraction..."), if a new city is selected.
 
 ## Deployment
 
