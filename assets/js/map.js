@@ -35,6 +35,7 @@ function citySelected() {
     //Functions to clear tables and markers if new city selected
     removeMarkers();
     clearTable();
+    resetAttraction();
 
     //Function to pan map to city selected
     if (city.geometry) {
@@ -162,9 +163,14 @@ function populateTable(attractionType, data) {
     }, 300);
 }
 
-//Function to clear data from table
+// Function to clear data from table
 function clearTable() {
     
     var category = document.getElementById("table");
     category.innerHTML = ``;
+}
+
+// Function to reset attractionSelector if new city is chosen -- addapted from https://www.formget.com/reset-form-fields-using-javascript/
+function resetAttraction(){
+      document.getElementById("selectorForm").reset();
 }
